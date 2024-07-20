@@ -12,9 +12,7 @@ class ConferenceController extends AbstractController
     #[Route('/', name: 'homepage')]
     public function index(Request $request): Response
     {
-        $greet = '';
-        if ($name = $request->query->get('name')) {
-        }
+        dump($request);
 
         return new Response(
             <<<EOF
