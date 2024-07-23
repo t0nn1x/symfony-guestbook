@@ -21,8 +21,8 @@ class Conference
     #[ORM\Column(length: 4)]
     private ?string $year;
 
-    #[ORM\Column]
-    private ?bool $isInternational = null;
+    #[ORM\Column(name: "is_international")]
+    private ?bool $isInternational;
 
     /**
      * @var Collection<int, Comment>
@@ -69,12 +69,12 @@ class Conference
         return $this;
     }
 
-    public function isInternational(): ?bool
+    public function getIsInternational(): ?bool
     {
         return $this->isInternational;
     }
 
-    public function setInternational(bool $isInternational): static
+    public function setIsInternational(bool $isInternational): self
     {
         $this->isInternational = $isInternational;
 
@@ -102,7 +102,6 @@ class Conference
     public function removeComment(Comment $comment): static
     {
         if ($this->comments->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
             if ($comment->getConference() === $this) {
                 $comment->setConference(null);
             }
